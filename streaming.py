@@ -70,4 +70,16 @@ def streaming():
                 elif sr.lower() in  ["Crunchy", "crunchyroll"]:
                         print('Opening the desired streaming service.')
                         webbrowser.open(urlc)
+                elif sr.lower() in  ["globoplayer", "globo play", 'globo']:
+                            print('Opening the desired streaming service.')
+                            webbrowser.open(urlg)
+                elif sr.lower() in  ["funimation"]:
+                            print('Opening the desired streaming service.')
+                            webbrowser.open(urlf)
+                elif sr.lower() in  ["apple tv", "Apple"]:
+                            print('Opening the desired streaming service.')
+                            webbrowser.open(urla)
+                elif sr.lower() in  ["star +", "star+", 'star']:
+                            print('Opening the desired streaming service.')
+                            webbrowser.open(urlst)
 streaming()
