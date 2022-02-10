@@ -5,7 +5,6 @@ import webbrowser
 
 def streaming():
 
-
     services = ['Netflix','netflix','Disney+','disney+','Disney','disney','Disney +','disney +', 'Hbo Max', 'hbo Max', 'HboMax', 'hbomax', 'Hbomax', 'Hbomax','hbo','Hbo', 'Prime video', 'prime video', 'Prime', 'prime', 'Amazon Prime','amazon prime',' Crunchyroll', 'crunchyroll']
     urln = 'https://www.netflix.com'
     urld = 'https://www.disneyplus.com'
