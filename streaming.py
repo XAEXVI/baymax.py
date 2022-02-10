@@ -70,5 +70,4 @@ def streaming():
                 elif sr.lower() in  ["Crunchy", "crunchyroll"]:
                         print('Opening the desired streaming service.')
                         webbrowser.open(urlc)
-
 streaming()
