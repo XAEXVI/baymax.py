@@ -1,9 +1,10 @@
-import requests
-import json
 import os
 import webbrowser
+import speech_recognition as sr
+import pyttsx3
 
-def streaming():
+def stream():
+
 
     services = ['Netflix','netflix','Disney+','disney+','Disney','disney','Disney +','disney +', 'Hbo Max', 'hbo Max', 'HboMax', 'hbomax', 'Hbomax', 'Hbomax','hbo','Hbo', 'Prime video', 'prime video', 'Prime', 'prime', 'Amazon Prime','amazon prime',' Crunchyroll', 'crunchyroll']
     urln = 'https://www.netflix.com'
@@ -15,70 +16,71 @@ def streaming():
     urlf = 'https://www.funimation.com'
     urla = 'https://tv.apple.com'
     urlst = 'https://www.starplus.com'
+    urlyt = 'https://www.youtube.com'
     urls = [ urld, urln, urlp, urlh, urlc, urlg, urlf, urla]
     
-    sr = str(input('Choose your Streaming service: '))
-    if sr in ['quit']:
+    engine = pyttsx3.init()
+    r = sr.Recognizer()
+    m = sr.Microphone()
+    engine.say('What Streaming service do you want to watch?')
+    engine.runAndWait()
+    
+    with m as source:
+        engine = pyttsx3.init()
+        r = sr.Recognizer()
+        m = sr.Microphone()
+        voices = engine.getProperty('voices')
+        engine.setProperty('voice', voices[1].id)        
+        r.adjust_for_ambient_noise(source)
+        audio = r.listen(source)
+        value = r.recognize_google(audio, language='en-US')
+        print(value)
+        pass
+        if value == 'quit':
                 quit = True
-                print('Welcome back to the main menu')
-    elif sr.lower() in ["netflix"]: 
-                print('Opening the desired streaming service.')
-                webbrowser.open(urln)    
-    elif sr.lower() in  ["disney", "disney+", "disney +"]:
-                print('Opening the desired streaming service.')
-                webbrowser.open(urld)           
-    elif sr.lower() in  ["amazon prime", "prime", "prime video"]:
-                print('Opening the desired streaming service.')
+                engine.say('Welcome back to the main menu')
+                engine.runAndWait()
+        elif "Netflix" in value : 
+                engine.say('Opening the desired streaming service.')
+                webbrowser.open(urln)
+                engine.runAndWait()    
+        elif "Disney Plus" in value:
+                engine.say('Opening the desired streaming service.')
+                webbrowser.open(urld)
+                engine.runAndWait()           
+        elif value ==  "Amazon prime" "prime" "prime video":
+                engine.say('Opening the desired streaming service.')
                 webbrowser.open(urlp)
-    elif sr.lower() in  ["hbo", "hbo max"]:
-                print('Opening the desired streaming service.')
+                engine.runAndWait()
+        elif "Hbo max" in value:
+                engine.say('Opening the desired streaming service.')
                 webbrowser.open(urlh)
-    elif sr.lower() in  ["Crunchy", "crunchyroll"]:
-                print('Opening the desired streaming service.')
+                engine.runAndWait()
+        elif "crunchyroll" in value:
+                engine.say('Opening the desired streaming service.')
                 webbrowser.open(urlc)
-    elif sr.lower() in  ["globoplayer", "globo play", 'globo']:
-                print('Opening the desired streaming service.')
+                engine.runAndWait()
+        elif "globo play" in value:
+                engine.say('Opening the desired streaming service.')
                 webbrowser.open(urlg)
-    elif sr.lower() in  ["funimation"]:
-                print('Opening the desired streaming service.')
+                engine.runAndWait()
+        elif "funimation" in value:
+                engine.say('Opening the desired streaming service.')
                 webbrowser.open(urlf)
-    elif sr.lower() in  ["apple tv", "Apple"]:
-                print('Opening the desired streaming service.')
+                engine.runAndWait()
+        elif "apple tv" in value:
+                engine.say('Opening the desired streaming service.')
                 webbrowser.open(urla)
-    elif sr.lower() in  ["star +", "star+", 'star']:
-                print('Opening the desired streaming service.')
+                engine.runAndWait()
+        elif "star +" "star+" 'star' in value:
+                engine.say('Opening the desired streaming service.')
+                engine.runAndWait()
                 webbrowser.open(urlst)
-    else:
-        while sr.lower() not in services:
-                sr = input("It wasn't possible to recognize the desired streaming service Please try again: " )
-                quit = False
-                if sr.lower() in ['quit']:
-                        quit = True
-                elif sr.lower() in ["netflix", "Tudum"]: 
-                        print('Opening the desired streaming service.')
-                        webbrowser.open(urln)    
-                elif sr.lower() in  ["disney", "disney+", "disney +"]:
-                        print('Opening the desired streaming service.')
-                        webbrowser.open(urld)           
-                elif sr.lower() in  ["amazon prime", "prime", "prime video"]:
-                        print('Opening the desired streaming service.')
-                        webbrowser.open(urlp)
-                elif sr.lower() in  ["hbo", "hbo max"]:
-                        print('Opening the desired streaming service.')
-                        webbrowser.open(urlh)           
-                elif sr.lower() in  ["Crunchy", "crunchyroll"]:
-                        print('Opening the desired streaming service.')
-                        webbrowser.open(urlc)
-                elif sr.lower() in  ["globoplayer", "globo play", 'globo']:
-                            print('Opening the desired streaming service.')
-                            webbrowser.open(urlg)
-                elif sr.lower() in  ["funimation"]:
-                            print('Opening the desired streaming service.')
-                            webbrowser.open(urlf)
-                elif sr.lower() in  ["apple tv", "Apple"]:
-                            print('Opening the desired streaming service.')
-                            webbrowser.open(urla)
-                elif sr.lower() in  ["star +", "star+", 'star']:
-                            print('Opening the desired streaming service.')
-                            webbrowser.open(urlst)
-streaming()
+        elif "Youtube" in value:
+                engine.say('Opening the desired streaming service.')
+                engine.runAndWait()
+                webbrowser.open(urlyt)
+        else:
+                return
+        engine.runAndWait()
+        
